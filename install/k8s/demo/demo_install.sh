@@ -1,6 +1,6 @@
-ns=kafka
-release=kafka
-config_file=overrides.yaml
+ns=kafka-demo
+release=kafka-demo
+config_file=demo.yaml
 
 # setup namespace
 kubectl create ns $ns
