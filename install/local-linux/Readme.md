@@ -42,6 +42,8 @@ source ~/.bashrc
 kafka-topics.sh --create --topic sample --bootstrap-server 'remote-server-ip:port'
 
 # To start kafka server locally,open new terminal / tab
+# Make sure ports 9092 and 2182 are not already taken
+
 # first start zookeeper
 zookeeper-server-start.sh ~/.local/bin/kafka_2.13-2.8.0/config/zookeeper.properties
 # then open a new tab / terminal
