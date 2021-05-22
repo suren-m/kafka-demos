@@ -1,0 +1,22 @@
+# https://github.com/bitnami/charts/tree/master/bitnami/kafka
+
+replicaCount: 5
+service:
+    type: LoadBalancer
+    loadBalancerIP: 10.0.18.1
+    annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true" 
+defaultReplicationFactor: 2
+externalAccess:
+    enabled: true
+    service:
+        type: LoadBalancer
+        # keep total IPs same as number of replicas
+        loadBalancerIPs:
+            - 10.0.18.10
+            - 10.0.18.11
+            - 10.0.18.12
+            - 10.0.18.13
+            - 10.0.18.14
+        annotations:
+            service.beta.kubernetes.io/azure-load-balancer-internal: "true"
