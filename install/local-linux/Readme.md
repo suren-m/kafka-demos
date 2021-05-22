@@ -31,7 +31,7 @@ tar -xvf kafka_2.13-2.8.0.tgz
 # For example
 mv kafka_2.13-2.8.0 ~./local/bin/
 
-# Add the path to .bashrc either manually or by doing below.
+# Add the kafka binaries path to .bashrc either manually or by doing below.
 # Make sure to only append. Notice the '>>' 
 echo 'export PATH=$PATH:$HOME/.local/bin/kafka_2.13-2.8.0/bin' >> ~/.bashrc
 
