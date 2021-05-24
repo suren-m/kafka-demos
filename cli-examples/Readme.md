@@ -1,4 +1,4 @@
-# Basikc Kafka labs using its CLI 
+# Basic Kafka labs using its CLI 
 
 ## Pre-requisites
 
@@ -52,7 +52,7 @@ kafka-topics.sh --list --bootstrap-server localhost:9093
 ### 2. Create a topic
 
 ```bash
-kafka-topics.sh --describe --topic music-playlist-events \
+kafka-topics.sh --create --topic music-playlist-events \
 --replication-factor 1 \
 --partitions 3 \
 --bootstrap-server localhost:9093
