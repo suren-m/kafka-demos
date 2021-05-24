@@ -25,6 +25,13 @@ producer:
 	kafka-console-producer.sh --topic $(TOPIC) \
 	--bootstrap-server $(BROKER)
 
+producer-with-key:
+	@echo "Running producer with message key for topic $(TOPIC) for $(BROKER) \n"
+	kafka-console-producer.sh --topic $(TOPIC) \
+	--property "parse.key=true" \
+	--property "key.separator=:" \
+	--bootstrap-server $(BROKER)
+
 consumer:
 	@echo "Running consumer for topic $(TOPIC) for $(BROKER) \n"
 	kafka-console-consumer.sh --topic $(TOPIC) \
@@ -35,8 +42,20 @@ consumer-group:
 	@echo "Running consumer group $(CGROUP) for topic $(TOPIC) for $(BROKER) \n"
 	kafka-console-consumer.sh --topic $(TOPIC) \
 	--group $(CGROUP) \
-	--from-beginning \
 	--bootstrap-server $(BROKER)
+
+describe-consumer-group:
+	@echo "Describing consumer group $(CGROUP) for topic $(TOPIC) for $(BROKER) \n"
+	kafka-consumer-groups.sh --describe \
+	--group $(CGROUP) \
+	--bootstrap-server $(BROKER)
+
+# or latest or shift-by or period
+# or dry-run
+offset-reset:
+	@echo "Resetting offsets for consumer group $(CGROUP) for topic $(TOPIC) for $(BROKER) \n"
+	kafka-consumer-groups.sh --topic $(TOPIC) \
+	--group $(CGROUP) --reset-offsets --to-earliest --execute --bootstrap-server $(BROKER)
 
 
 
