@@ -1,12 +1,14 @@
 ## Local Install on a Debian based linux. 
 
-> ## Prefer Docker-compose or Kubernetes options whenever possible.
+> ## For running the `kafka` server locally use Docker-compose 
 
-> ## Do this only if Docker or Kubernetes environment is unavailable in your dev machine. 
+> ## Do this local install mainly to interact with kafka server running as a docker container.
 
 #### This is just a reference. Your experience may vary depending on your linux distribution.
 
 #### If you're on Mac, you may be able to install it via brew but make sure you have java / open-jdk installed.
+
+#### On Linux / WSL2
 
 ```bash
 # Make sure java / openjdk-8 (minimum) is installed 

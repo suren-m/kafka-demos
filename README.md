@@ -4,10 +4,16 @@
 
 Take a look at install directory for installation options. 
 
-### Easy setup
-* (recommended) Use docker-compose for a quick and easy single-node-broker setup
+### Easy local setup (recommended)
+* Use docker-compose for a quick and easy single-node-broker setup
     * The above will provide access to kafka broker via `localhost:9093` from local machine.
-* Use local-install only if docker is unavailable in dev environment  
+    * see `docker-compose` inside `install` directoy.
 
-* Don't worry about Kubernetes for now. It'll be covered during demos.
+* Optionally, install `kafka` locally, so you can use its Command-Line Interface. 
+    * See `local` directory inside `local`
+    * If you don't have `docker`, then you'll also have the option to run kafka server directly.
+    
+---
+
+Don't worry about Kubernetes for now. It is mainly for live demo.
 
