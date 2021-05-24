@@ -1,5 +1,6 @@
 BROKER := localhost:9093
 TOPIC := music-playlist-events
+CGROUP := my-consumer-app
 REPLICAS := 1
 PARTITIONS := 3
 
@@ -29,3 +30,13 @@ consumer:
 	kafka-console-consumer.sh --topic $(TOPIC) \
 	--from-beginning \
 	--bootstrap-server $(BROKER)
+
+consumer-group:
+	@echo "Running consumer group $(CGROUP) for topic $(TOPIC) for $(BROKER) \n"
+	kafka-console-consumer.sh --topic $(TOPIC) \
+	--group $(CGROUP) \
+	--from-beginning \
+	--bootstrap-server $(BROKER)
+
+
+
