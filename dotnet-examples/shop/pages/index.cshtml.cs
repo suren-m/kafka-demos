@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using Shop.Services;
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Shop.Pages
@@ -11,7 +8,7 @@ namespace Shop.Pages
     {
         private readonly OrdersService _ordersService;
 
-        public string Message { get; private set; } = "Welcome to the Shop.";
+        public string Message { get; private set; } = "Welcome to Demo Shop.";
 
         public string OrderStatus { get; set; }
 
@@ -23,7 +20,7 @@ namespace Shop.Pages
 
         public async Task OnGetAsync()
         {
-            Message = await _ordersService.GetSomeText("aGVsbG8gd29ybGQK");
+            //Message = await _ordersService.GetSomeText("aGVsbG8gd29ybGQK");            
         }
 
         public async Task OnPostAsync()
