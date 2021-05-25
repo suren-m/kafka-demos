@@ -1,6 +1,6 @@
 ## Local Install on a Debian based linux. 
 
-> ## For running the `kafka` server locally use Docker-compose 
+> ## For running the `kafka` server locally, try to use Docker-compose 
 
 > ## Do this local install mainly to interact with kafka server running as a docker container.
 

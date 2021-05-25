@@ -4,7 +4,7 @@
 
 Take a look at install directory for installation options. 
 
-### Easy local setup (recommended)
+### Local setup (recommended)
 1. Use docker-compose for a quick and easy single-node-broker setup
     * The above will provide access to kafka broker via `localhost:9093` from local machine.
     * see `docker-compose` inside `install` directoy.
