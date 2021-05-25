@@ -3,6 +3,7 @@ TOPIC := music-playlist-events
 CGROUP := my-consumer-app
 REPLICAS := 1
 PARTITIONS := 3
+DEFAULT_PARTITION := 0
 
 list-topics:	
 	@echo "Listing topics for $(BROKER) \n"
@@ -38,17 +39,24 @@ consumer:
 	--from-beginning \
 	--bootstrap-server $(BROKER)
 
+describe-consumer-group:
+	@echo "Describing consumer group $(CGROUP) for topic $(TOPIC) for $(BROKER) \n"
+	kafka-consumer-groups.sh --describe \
+	--group $(CGROUP) \
+	--bootstrap-server $(BROKER)
+
 consumer-group:
 	@echo "Running consumer group $(CGROUP) for topic $(TOPIC) for $(BROKER) \n"
 	kafka-console-consumer.sh --topic $(TOPIC) \
 	--group $(CGROUP) \
 	--bootstrap-server $(BROKER)
 
-describe-consumer-group:
-	@echo "Describing consumer group $(CGROUP) for topic $(TOPIC) for $(BROKER) \n"
-	kafka-consumer-groups.sh --describe \
-	--group $(CGROUP) \
-	--bootstrap-server $(BROKER)
+consumer-group-with-key-and-partition:
+	@echo "Running consumer group $(CGROUP) for Partition $(PARTITION) on topic $(TOPIC) for $(BROKER) \n "
+	kafka-console-consumer.sh --topic $(TOPIC) --bootstrap-server $(BROKER) \
+	--property print.key=true \
+	--property key.separator=":" \
+	--partition $(DEFAULT_PARTITION) \
 
 # or latest or shift-by or period
 # or dry-run

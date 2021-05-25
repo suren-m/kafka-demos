@@ -6,7 +6,7 @@
 
 #### This is just a reference. Your experience may vary depending on your linux distribution.
 
-#### If you're on Mac, you may be able to install it via brew but make sure you have java / open-jdk installed.
+#### If you're on Mac, you may be able to install it via brew but make sure you have java / open-jdk installed.  
 
 #### On Linux / WSL2
 
