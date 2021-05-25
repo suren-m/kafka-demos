@@ -108,3 +108,5 @@ Optionally, try opening another terminal and create another consumer to retrieve
 This concludes kafka setup lab. You're free to try out other demos (non-prescriptive) in this repo or try things on your own. 
 
 If you're looking to try more cli-examples, take a look at the `Makefile` in this directory and see `consumer-groups` and `producer-with-keys`
+
+Take a look at `py-examples` directory of this repo next for python based examples
