@@ -1,8 +1,27 @@
 @page
 @using Shop.Pages
+@using Shop.Models
 @model IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <h2>Separate page model</h2>
 <p>
     @Model.Message
 </p>
+
+
+<form method="post" asp-page-handler="SingleOrder">
+    Place Single Order:
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Place Order" />
+</form>
+
+<form method="post" asp-page-handler="BulkOrder">
+    <span asp-validation-for="BulkOrder.Count"></span>
+    @Html.AntiForgeryToken()
+    Enter number of Orders Needed:
+    <input asp-for="BulkOrder.Count" />
+    <input type="submit" value="Place Bulk Order" />
+</form>
+
+<b> @Model.OrderStatus </b>
