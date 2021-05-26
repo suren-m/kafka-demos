@@ -24,29 +24,17 @@ namespace Shop.Pages
             _ordersService = ordersService;
         }
 
-        // public async Task OnPostAsync()
-        // {
-        //     if (BulkOrder.Count <= 1)
-        //     {
-        //         await _ordersService.PlaceOrderAsync(OrderType.Default);
-        //         OrderStatus = "Single Order placed";
-        //     }
-        //     else
-        //     {
-        //         _ordersService.PlaceBulkOrders(BulkOrder.Count);
-        //         OrderStatus = "Bulk Order placed";
-        //     }
-        // }
-
         public async Task OnPostSingleOrder()
         {
-            await _ordersService.PlaceOrderAsync(OrderType.Default);
+            await _ordersService.PlaceOrderAsync();
+            //await _ordersService.PlaceOrderAsyncEH();
             OrderStatus = "Single Order placed";
         }
 
         public async Task OnPostBulkOrder()
         {
             _ordersService.PlaceBulkOrders(BulkOrder.Count);
+            //_ordersService.PlaceBulkOrdersUsingEventHub(BulkOrder.Count);
             OrderStatus = "Bulk Order placed";
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Confluent.Kafka;
+using Microsoft.Extensions.Configuration;
 
 namespace Shop.Services
 {
@@ -16,11 +17,14 @@ namespace Shop.Services
     {
         public HttpClient Client { get; }
 
+        private readonly IConfiguration Configuration;
+
         private readonly string _topic = "orders";
         private readonly string _brokers = "localhost:9093";
 
-        public OrdersService(HttpClient client)
+        public OrdersService(HttpClient client, IConfiguration configuration)
         {
+            Configuration = configuration;
             client.BaseAddress = new Uri("https://httpbin.org/");
             Client = client;
         }
@@ -30,13 +34,50 @@ namespace Shop.Services
             return await Client.GetStringAsync($"base64/{base64Str}");
         }
 
-        public async Task PlaceOrderAsync(OrderType orderType)
+        public async Task PlaceOrderAsyncEH()
+        {
+            string brokerList = Configuration["EH_FQDN"];
+            string topic = Configuration["EH_NAME"];
+            string password = Configuration["SASL_PASSWORD"];
+            var config = new ProducerConfig
+            {
+                BootstrapServers = brokerList,
+                SecurityProtocol = SecurityProtocol.SaslSsl,
+                SaslMechanism = SaslMechanism.Plain,
+                SaslUsername = "$ConnectionString",
+                SaslPassword = password
+            };
+            await PlaceOrderAsync(config);
+        }
+
+        public void PlaceBulkOrdersUsingEventHub(int count)
+        {
+            string brokerList = Configuration["EH_FQDN"];
+            string connectionString = Configuration["EH_CONNECTION_STRING"];
+            string topic = Configuration["EH_NAME"];
+            string password = Configuration["SASL_PASSWORD"];
+            var config = new ProducerConfig
+            {
+                BootstrapServers = brokerList,
+                SecurityProtocol = SecurityProtocol.SaslSsl,
+                SaslMechanism = SaslMechanism.Plain,
+                SaslUsername = "$ConnectionString",
+                SaslPassword = password
+            };
+            PlaceBulkOrders(count, config);
+        }
+
+        public async Task PlaceOrderAsync()
         {
             var config = new ProducerConfig
             {
                 BootstrapServers = _brokers
             };
+            await PlaceOrderAsync(config);
+        }
 
+        private async Task PlaceOrderAsync(ProducerConfig config)
+        {
             // Note: by default strings are encoded as UTF8.  (JSON, Avro are supported too)
             using (var p = new ProducerBuilder<Null, string>(config).Build())
             {
@@ -56,14 +97,18 @@ namespace Shop.Services
             }
         }
 
-        // Run it in a separate Task to stop it from blocking the main thread.
         public void PlaceBulkOrders(int count)
         {
             var config = new ProducerConfig
             {
                 BootstrapServers = _brokers
             };
+            PlaceBulkOrders(count, config);
+        }
 
+        // Run it in a separate Task to stop it from blocking the main thread.
+        private void PlaceBulkOrders(int count, ProducerConfig config)
+        {
             Action<DeliveryReport<string, string>> handler = r =>
             {
                 if (r.Error.IsError)
