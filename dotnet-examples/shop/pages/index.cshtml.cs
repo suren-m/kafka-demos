@@ -26,16 +26,27 @@ namespace Shop.Pages
 
         public async Task OnPostSingleOrder()
         {
-            //await _ordersService.PlaceOrderAsync();
-            await _ordersService.PlaceOrderAsyncEH();
+            await _ordersService.PlaceOrderAsync();
             OrderStatus = "Single Order placed";
         }
 
         public async Task OnPostBulkOrder()
         {
-            //_ordersService.PlaceBulkOrders(BulkOrder.Count);
-            _ordersService.PlaceBulkOrdersUsingEventHub(BulkOrder.Count);
+            _ordersService.PlaceBulkOrders(BulkOrder.Count);
             OrderStatus = "Bulk Order placed";
+        }
+
+
+        public async Task OnPostSingleOrderEH()
+        {
+            await _ordersService.PlaceOrderAsyncEH();
+            OrderStatus = "Single Order placed on EH";
+        }
+
+        public async Task OnPostBulkOrderEH()
+        {
+            _ordersService.PlaceBulkOrdersUsingEventHub(BulkOrder.Count);
+            OrderStatus = "Bulk Order placed on EH";
         }
 
 

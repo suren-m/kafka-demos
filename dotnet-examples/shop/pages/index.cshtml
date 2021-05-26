@@ -24,4 +24,20 @@
     <input type="submit" value="Place Bulk Order" />
 </form>
 
+<form method="post" asp-page-handler="SingleOrderEH">
+    Place Single Order:
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Place Order through Kafka for Event Hub" />
+</form>
+
+<form method="post" asp-page-handler="BulkOrderEH">
+    <span asp-validation-for="BulkOrder.Count"></span>
+    @Html.AntiForgeryToken()
+    Enter number of Orders Needed:
+    <input asp-for="BulkOrder.Count" />
+    <input type="submit" value="Place Bulk Order through Kafka for Event Hub" />
+</form>
+
+
+
 <b> @Model.OrderStatus </b>

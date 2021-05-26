@@ -13,10 +13,13 @@ namespace shipping_service
         {
             using IHost host = CreateHostBuilder(args).Build();
             var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
-            // Application code should start here.
+
             Console.WriteLine("service starting");
             var shipmentService = new ShipmentService(config);
-            shipmentService.Consume_Orders();
+
+            Task local = Task.Run(() => shipmentService.ConsumerOrdersLocal());
+
+            Task EH = Task.Run(() => shipmentService.ConsumeOrdersEH());
 
             await host.RunAsync();
         }

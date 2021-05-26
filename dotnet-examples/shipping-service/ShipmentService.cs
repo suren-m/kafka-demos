@@ -38,10 +38,26 @@ namespace shipping_service
             };
             return config;
         }
+        public void ConsumerOrdersLocal()
+        {
+            var brokers = "localhost:9093";
+            var config = new ConsumerConfig
+            {
+                BootstrapServers = brokers,
+                GroupId = _group,
+                AutoOffsetReset = AutoOffsetReset.Earliest,
+            };
+            ConsumeOrders(config, brokers);
+        }
 
-        public void Consume_Orders()
+        public void ConsumeOrdersEH()
         {
             var config = GetConsumerConfig();
+            ConsumeOrders(config, _brokerlist);
+        }
+
+        private void ConsumeOrders(ConsumerConfig config, string brokers)
+        {
             using (var consumer = new ConsumerBuilder<string, string>(config).Build())
             {
                 CancellationTokenSource cts = new CancellationTokenSource();
@@ -49,7 +65,7 @@ namespace shipping_service
 
                 consumer.Subscribe(_topic);
 
-                Console.WriteLine("Consuming messages from topic: " + _topic + ", broker(s): " + _brokerlist);
+                Console.WriteLine("Consuming messages from topic: " + _topic + ", broker(s): " + brokers);
 
                 while (true)
                 {
