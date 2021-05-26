@@ -34,7 +34,7 @@ namespace Shop.Services
             return await Client.GetStringAsync($"base64/{base64Str}");
         }
 
-        public async Task PlaceOrderAsyncEH()
+        private ProducerConfig GetEHConfig()
         {
             string brokerList = Configuration["EH_FQDN"];
             string topic = Configuration["EH_NAME"];
@@ -47,23 +47,18 @@ namespace Shop.Services
                 SaslUsername = "$ConnectionString",
                 SaslPassword = password
             };
+            return config;
+        }
+
+        public async Task PlaceOrderAsyncEH()
+        {
+            var config = GetEHConfig();
             await PlaceOrderAsync(config);
         }
 
         public void PlaceBulkOrdersUsingEventHub(int count)
         {
-            string brokerList = Configuration["EH_FQDN"];
-            string connectionString = Configuration["EH_CONNECTION_STRING"];
-            string topic = Configuration["EH_NAME"];
-            string password = Configuration["SASL_PASSWORD"];
-            var config = new ProducerConfig
-            {
-                BootstrapServers = brokerList,
-                SecurityProtocol = SecurityProtocol.SaslSsl,
-                SaslMechanism = SaslMechanism.Plain,
-                SaslUsername = "$ConnectionString",
-                SaslPassword = password
-            };
+            var config = GetEHConfig();
             PlaceBulkOrders(count, config);
         }
 
