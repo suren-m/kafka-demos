@@ -11,7 +11,7 @@
 #### On Linux / WSL2
 
 ```bash
-# Make sure java / openjdk-8 (minimum) is installed 
+# Make sure java / openjdk-8 (recommended) is installed 
 java -version
 
 # If Java is not installed, then download open-jdk (min version 8)
