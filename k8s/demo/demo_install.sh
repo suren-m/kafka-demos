@@ -1,5 +1,5 @@
-ns=kafka-demo
-release=kafka-demo
+ns=kafka
+release=kafka
 config_file=demo.yaml
 
 # setup namespace
