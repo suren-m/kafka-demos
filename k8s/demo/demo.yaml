@@ -1,8 +1,8 @@
 # https://github.com/bitnami/charts/tree/master/bitnami/kafka
 
-replicaCount: 5
-defaultReplicationFactor: 3
-numPartitions: 10
+replicaCount: 3
+defaultReplicationFactor: 2 
+numPartitions: 3
 service:
     type: LoadBalancer
     loadBalancerIP: 10.0.19.1
