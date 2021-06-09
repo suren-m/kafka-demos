@@ -9,9 +9,7 @@ producer = KafkaProducer(
 # Async by default
 for i in range(0, 10):
     msg = 'order-' + str(i)
-    # future = producer.send(globals.topic, str.encode(msg))
-    future = producer.send(
-        globals.topic, key=b'discount-sale', value=str.encode(msg))
+    future = producer.send(globals.topic, str.encode(msg))
 
     # Block for 'synchronous' sends
     try:
