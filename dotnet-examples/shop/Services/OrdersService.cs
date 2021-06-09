@@ -20,7 +20,7 @@ namespace Shop.Services
         private readonly IConfiguration Configuration;
 
         private readonly string _topic = "orders";
-        private readonly string _brokers = "localhost:9093";
+        private readonly string _brokers = "10.0.19.1:9094";
 
         public OrdersService(HttpClient client, IConfiguration configuration)
         {

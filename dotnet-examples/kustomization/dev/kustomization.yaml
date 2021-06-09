@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- namespace.yaml
+- ../base
+patchesStrategicMerge:
+- overrides.yaml
+namespace: shop-dev
+commonLabels:
+  environment: dev
+# kustomize edit set image surenmcode/strings-api=surenmcode/strings-api:5.5
+images:
+- name: surenmcode/shop
+  newName: surenmcode/shop
+  newTag: "1.0"
+- name: surenmcode/shipment_service
+  newName: surenmcode/shipment_service
+  newTag: "1.0"

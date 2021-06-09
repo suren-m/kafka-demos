@@ -40,7 +40,7 @@ namespace shipping_service
         }
         public void ConsumerOrdersLocal()
         {
-            var brokers = "localhost:9093";
+            var brokers = "10.0.19.1:9094";
             var config = new ConsumerConfig
             {
                 BootstrapServers = brokers,

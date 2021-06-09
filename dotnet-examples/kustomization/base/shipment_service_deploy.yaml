@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kafka-demo-shop
+  name: shipment-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shipment-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: shipment-service
+    spec:
+      containers:
+        - image: surenmcode/shipment_service
+          name: shipment-service            
+status: {}

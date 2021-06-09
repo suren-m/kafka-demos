@@ -1,0 +1,6 @@
+resources:
+  - shop_deploy.yaml
+  - shop_svc.yaml
+  - shipment_service_deploy.yaml
+  - shipment_service_svc.yaml
+
