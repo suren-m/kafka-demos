@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: py-shipment  
+  name: py-shipment
+  namespace: dapr-kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-shipment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: py-shipment
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "py-shipment"
+        dapr.io/app-port: "50051"
+        dapr.io/app-protocol: "grpc"        
+    spec:
+      containers:
+      - image: surenmcode/py-dapr-shipment:1.0
+        name: py-dapr-shipment
+        resources: {}
+status: {}

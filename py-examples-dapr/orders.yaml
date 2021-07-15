@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: py-orders
+  name: py-orders
+  namespace: dapr-kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-orders
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: py-orders
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "py-orders"        
+        dapr.io/app-protocol: "grpc"
+        dapr.io/grpc-port: "3500"  
+    spec:
+      containers:
+      - image: surenmcode/py-dapr-orders:1.0
+        name: py-dapr-orders
+        resources: {}
+status: {}

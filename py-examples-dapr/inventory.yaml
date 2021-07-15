@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: py-inventory
+  name: py-inventory
+  namespace: dapr-kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-inventory
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: py-inventory
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "py-inventory"
+        dapr.io/app-port: "50051"
+        dapr.io/app-protocol: "grpc"        
+    spec:
+      containers:
+      - image: surenmcode/py-dapr-inventory:1.0
+        name: py-dapr-inventory
+        resources: {}
+status: {}
