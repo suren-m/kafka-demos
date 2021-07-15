@@ -1,0 +1,21 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: orders-topic
+spec:
+  type: bindings.kafka
+  version: v1
+  metadata:
+  # Kafka broker connection setting
+  - name: brokers
+    value: "10.0.19.1:9094"
+  # consumer configuration: topic and consumer group
+  - name: topics
+    value: orders
+  - name: consumerGroup
+    value: inventory  
+  # publisher configuration: topic
+  - name: publishTopic
+    value: orders
+  - name: authRequired
+    value: "false"

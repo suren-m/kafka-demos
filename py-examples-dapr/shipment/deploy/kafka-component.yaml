@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: py-shipment-dapr
+spec: {}
+status: {}
+
+---
+
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: orders-topic
+  namespace: py-shipment-dapr
+spec:
+  type: bindings.kafka
+  version: v1
+  metadata:
+  # Kafka broker connection setting
+  - name: brokers
+    value: "10.0.19.1:9094"
+  # consumer configuration: topic and consumer group
+  - name: topics
+    value: orders
+  - name: consumerGroup
+    value: shipment
+  
