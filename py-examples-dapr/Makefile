@@ -9,15 +9,15 @@ push:
 	docker push surenmcode/py-shipment:1.1-dapr
 
 py-orders:
-	kubectl apply -f ./orders/deploy/pubsub-component.yaml
+	kubectl apply -f ./orders/deploy/kafka-component.yaml
 	kubectl apply -f ./orders/deploy/orders.yaml
 
 py-inventory:
-	kubectl apply -f ./inventory/deploy/pubsub-component.yaml
+	kubectl apply -f ./inventory/deploy/kafka-component.yaml
 	kubectl apply -f ./inventory/deploy/inventory.yaml
 
 py-shipment:
-	kubectl apply -f ./shipment/deploy/pubsub-component.yaml
+	kubectl apply -f ./shipment/deploy/kafka-component.yaml
 	kubectl apply -f ./shipment/deploy/shipment.yaml
 
 py-orders-logs:
