@@ -4,30 +4,30 @@ metadata:
   creationTimestamp: null
   labels:
     app: py-shipment  
-    demo: dapr-grpc
+    demo: dapr
   name: py-shipment
-  namespace: py-shipment-dapr-grpc
+  namespace: py-shipment-dapr
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: py-shipment
-      demo: dapr-grpc
+      demo: dapr
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
         app: py-shipment
-        demo: dapr-grpc
+        demo: dapr
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "py-shipment-dapr-grpc"
+        dapr.io/app-id: "py-shipment-dapr"
         dapr.io/app-port: "50051"
         dapr.io/app-protocol: "grpc"        
     spec:
       containers:
-      - image: surenmcode/py-shipment:1.1-dapr-grpc
+      - image: surenmcode/py-shipment:1.1-dapr
         name: py-shipment
         imagePullPolicy: Always
         resources: {}

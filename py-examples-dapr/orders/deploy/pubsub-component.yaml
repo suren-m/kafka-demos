@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   creationTimestamp: null
-  name: py-orders-dapr-grpc
+  name: py-orders-dapr
 spec: {}
 status: {}
 
@@ -12,7 +12,7 @@ apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
   name: my-pubsub
-  namespace: py-orders-dapr-grpc
+  namespace: py-orders-dapr
 spec:
   type: pubsub.kafka
   version: v1

@@ -4,30 +4,30 @@ metadata:
   creationTimestamp: null
   labels:
     app: py-inventory
-    demo: dapr-grpc
+    demo: dapr
   name: py-inventory
-  namespace: py-inventory-dapr-grpc
+  namespace: py-inventory-dapr
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: py-inventory
-      demo: dapr-grpc      
+      demo: dapr      
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
         app: py-inventory
-        demo: dapr-grpc
+        demo: dapr
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "py-inventory-dapr-grpc"
+        dapr.io/app-id: "py-inventory-dapr"
         dapr.io/app-port: "50051"
         dapr.io/app-protocol: "grpc"        
     spec:
       containers:
-      - image: surenmcode/py-inventory:1.1-dapr-grpc
+      - image: surenmcode/py-inventory:1.1-dapr
         name: py-inventory
         imagePullPolicy: Always
         resources: {}
