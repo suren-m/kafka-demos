@@ -1,5 +1,3 @@
-from logging import log
-import globals
 import time
 import json
 
@@ -18,12 +16,12 @@ with DaprClient() as d:
 
         # Create a typed message with content type and body
         resp = d.publish_event(
-            pubsub_name='kafka-pubsub',
-            topic_name='orders',
+            pubsub_name='my-pubsub',
+            topic_name='dapr-demo-orders',
             data=json.dumps(req_data),
             data_content_type='application/json',
         )
 
         # Print the request
         print(req_data, flush=True)
-        time.sleep(2)
+        time.sleep(3)

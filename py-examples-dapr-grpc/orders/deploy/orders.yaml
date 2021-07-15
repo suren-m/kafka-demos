@@ -4,27 +4,31 @@ metadata:
   creationTimestamp: null
   labels:
     app: py-orders
+    demo: dapr-grpc
   name: py-orders
-  namespace: dapr-kafka
+  namespace: py-orders-dapr-grpc
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: py-orders
+      demo: dapr-grpc
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
         app: py-orders
+        demo: dapr-grpc
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "py-orders"        
+        dapr.io/app-id: "py-orders-dapr-grpc"        
         dapr.io/app-protocol: "grpc"
         dapr.io/grpc-port: "3500"  
     spec:
       containers:
-      - image: surenmcode/py-dapr-orders:1.0
-        name: py-dapr-orders
+      - image: surenmcode/py-orders:1.1-dapr-grpc
+        name: py-orders
+        imagePullPolicy: Always
         resources: {}
 status: {}

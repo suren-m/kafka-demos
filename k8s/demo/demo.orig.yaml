@@ -2,7 +2,7 @@
 
 replicaCount: 2
 defaultReplicationFactor: 2 
-numPartitions: 3
+numPartitions: 2
 service:
     type: LoadBalancer
     loadBalancerIP: 10.0.19.1

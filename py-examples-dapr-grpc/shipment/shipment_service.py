@@ -5,7 +5,7 @@ import json
 
 app = App()
 
-@app.subscribe(pubsub_name='kafka-pubsub', topic='orders')
+@app.subscribe(pubsub_name='my-pubsub', topic='dapr-demo-orders')
 def mytopic(event: v1.Event) -> None:
     data = json.loads(event.Data())
     print(f'Subscriber received: id={data["id"]}, message="{data["message"]}", content_type="{event.content_type}"',flush=True)

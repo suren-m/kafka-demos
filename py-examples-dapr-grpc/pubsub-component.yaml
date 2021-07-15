@@ -1,13 +1,13 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: kafka-pubsub
+  name: my-pubsub
 spec:
   type: pubsub.kafka
   version: v1
   metadata:
-      # Kafka broker connection setting
     - name: brokers
       value: "10.0.19.1:9094"
     - name: authRequired
       value: "false"
+
