@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: py-shipment  
+    demo: dapr-grpc
+  name: py-shipment
+  namespace: py-shipment-dapr-grpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-shipment
+      demo: dapr-grpc
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: py-shipment
+        demo: dapr-grpc
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "py-shipment-dapr-grpc"
+        dapr.io/app-port: "50051"
+        dapr.io/app-protocol: "grpc"        
+    spec:
+      containers:
+      - image: surenmcode/py-shipment:1.1-dapr-grpc
+        name: py-shipment
+        imagePullPolicy: Always
+        resources: {}
+status: {}

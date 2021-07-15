@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: py-inventory-dapr-grpc
+spec: {}
+status: {}
+
+---
+
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: my-pubsub
+  namespace: py-inventory-dapr-grpc
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+    - name: brokers
+      value: "10.0.19.1:9094"
+    - name: authRequired
+      value: "false"
+
