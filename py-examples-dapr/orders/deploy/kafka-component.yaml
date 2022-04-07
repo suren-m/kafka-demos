@@ -7,7 +7,6 @@ spec: {}
 status: {}
 
 ---
-
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
@@ -17,13 +16,11 @@ spec:
   type: bindings.kafka
   version: v1
   metadata:
-  # Kafka broker connection setting
-  - name: brokers
-    value: "10.0.19.1:9094"
-  # publisher configuration: topic
-  - name: publishTopic
-    value: orders
-  - name: authRequired
-    value: "false"
-  
-
+    # Kafka broker connection setting
+    - name: brokers
+      value: "10.0.18.1:9094"
+    # publisher configuration: topic
+    - name: publishTopic
+      value: orders
+    - name: authRequired
+      value: "false"

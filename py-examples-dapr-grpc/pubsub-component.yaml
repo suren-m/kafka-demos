@@ -7,7 +7,7 @@ spec:
   version: v1
   metadata:
     - name: brokers
-      value: "10.0.19.1:9094"
+      value: "10.0.18.1:9094"
     - name: authRequired
       value: "false"
 
