@@ -8,6 +8,8 @@ push:
 	docker push surenmcode/py-inventory:1.1-dapr-grpc
 	docker push surenmcode/py-shipment:1.1-dapr-grpc
 
+deploy:	py-orders py-inventory py-shipment
+
 py-orders:
 	kubectl apply -f ./orders/deploy/pubsub-component.yaml
 	kubectl apply -f ./orders/deploy/orders.yaml
@@ -23,11 +25,20 @@ py-shipment:
 py-orders-logs:
 	kubectl logs --selector=app=py-orders --follow -n py-orders-dapr-grpc -c py-orders
 
+py-orders-daprd-logs:
+	kubectl logs --selector=app=py-orders --follow -n py-orders-dapr-grpc -c daprd
+
 py-inventory-logs:
 	kubectl logs --selector=app=py-inventory --follow -n py-inventory-dapr-grpc -c py-inventory
 
+py-inventory-daprd-logs:
+	kubectl logs --selector=app=py-inventory --follow -n py-inventory-dapr-grpc -c daprd
+
 py-shipment-logs:
 	kubectl logs --selector=app=py-shipment --follow -n py-shipment-dapr-grpc -c py-shipment	
+
+py-shipment-daprd-logs:
+	kubectl logs --selector=app=py-shipment --follow -n py-shipment-dapr-grpc -c daprd
 
 delete-all:
 	kubectl delete ns py-orders-dapr-grpc

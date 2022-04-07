@@ -24,18 +24,18 @@ java -version
 # download kafka from any of the mirrors
 # see: https://kafka.apache.org/downloads
 
-curl -LO https://mirrors.gethosted.online/apache/kafka/2.8.0/kafka_2.13-2.8.0.tgz
-
+#curl -LO https://mirrors.gethosted.online/apache/kafka/2.8.0/kafka_2.13-2.8.0.tgz
+curl -LO https://dlcdn.apache.org/kafka/3.1.0/kafka_2.13-3.1.0.tgz
 # extract
-tar -xvf kafka_2.13-2.8.0.tgz
+tar -xvf kafka_2.13-3.1.0.tgz
 
 # move it to your prefered location
 # For example
-mv kafka_2.13-2.8.0 ~./local/bin/
+mv kafka_2.13-3.1.0 ~/.local/bin/
 
 # Add the kafka binaries path to .bashrc either manually or by doing below.
 # Make sure to only append. Notice the '>>' 
-echo 'export PATH=$PATH:$HOME/.local/bin/kafka_2.13-2.8.0/bin' >> ~/.bashrc
+echo 'export PATH=$PATH:$HOME/.local/bin/kafka_2.13-3.1.0/bin' >> ~/.bashrc
 
 # Restart shell
 source ~/.bashrc

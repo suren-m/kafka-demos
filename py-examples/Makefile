@@ -1,4 +1,4 @@
-BROKER := localhost:9093
+BROKER := 10.0.18.1:9094
 TOPIC := orders
 CGROUP := inventory-service
 REPLICAS := 1

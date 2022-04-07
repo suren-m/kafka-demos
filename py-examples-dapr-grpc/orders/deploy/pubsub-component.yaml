@@ -18,5 +18,10 @@ spec:
   metadata:
     - name: brokers
       value: "10.0.18.1:9094"
+      #value: "kafka.kafka.svc.cluster.local:9094,kafka.kafka.svc.cluster.local:9092"
+    - name: authType # Required.
+      value: "none"
     - name: authRequired
       value: "false"
+    - name: disableTls
+      value: "true"

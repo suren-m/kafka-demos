@@ -8,6 +8,8 @@ push:
 	docker push surenmcode/py-inventory:1.1-dapr
 	docker push surenmcode/py-shipment:1.1-dapr
 
+deploy:	py-orders py-inventory py-shipment
+
 py-orders:
 	kubectl apply -f ./orders/deploy/kafka-component.yaml
 	kubectl apply -f ./orders/deploy/orders.yaml

@@ -2,7 +2,7 @@ FROM python:3-slim
 
 WORKDIR /app
 
-RUN pip install dapr dapr-ext-grpc
+RUN pip install dapr
 COPY . .
 
 STOPSIGNAL SIGINT
