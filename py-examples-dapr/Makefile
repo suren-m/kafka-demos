@@ -28,3 +28,8 @@ py-inventory-logs:
 
 py-shipment-logs:
 	kubectl logs --selector=app=py-shipment --follow -n py-shipment-dapr -c py-shipment	
+
+delete-all:
+	kubectl delete ns py-orders-dapr
+	kubectl delete ns py-inventory-dapr
+	kubectl delete ns py-shipment-dapr

@@ -24,3 +24,5 @@ spec:
       value: orders
     - name: consumerGroup
       value: inventory
+    - name: authRequired
+      value: "false"
